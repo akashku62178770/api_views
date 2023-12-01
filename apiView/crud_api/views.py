@@ -7,7 +7,7 @@ from .serializers import StudentSerializer
 
 # Create your views here.
 
-
+# API View
 class StudentView(APIView):
     def post(self, request, format=None):
         print("Student1", request)
@@ -97,3 +97,51 @@ class StudentRetrieveMixinView(
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+
+
+
+
+# Generic Views 
+
+# class StudentGenericView(generics.ListAPIView):
+#     queryset = Students.objects.all()
+#     serializer_class = StudentSerializer
+
+
+# class StudentGenericView(generics.CreateAPIView):
+#     queryset = Students.objects.all()
+#     serializer_class = StudentSerializer
+
+class StudentGenericView(generics.ListCreateAPIView):
+    queryset = Students.objects.all()
+    serializer_class = StudentSerializer
+
+# class StudentDataGenericsView(generics.RetrieveAPIView):
+#     queryset = Students.objects.all()
+#     serializer_class = StudentSerializer
+
+# class StudentDataGenericsView(generics.UpdateAPIView):
+#     queryset = Students.objects.all()
+#     serializer_class = StudentSerializer
+
+
+# class StudentDataGenericsView(generics.DestroyAPIView): 
+#     queryset = Students.objects.all()
+#     serializer_class = StudentSerializer
+
+
+# class StudentDataGenericsView(generics.RetrieveUpdateAPIView):
+#     queryset = Students.objects.all()
+#     serializer_class = StudentSerializer 
+
+
+
+# class StudentDataGenericsView(generics.RetrieveDestroyAPIView):  
+#     queryset = Students.objects.all()
+#     serializer_class = StudentSerializer
+
+
+class StudentDataGenericsView(generics.RetrieveUpdateDestroyAPIView): 
+    queryset = Students.objects.all()
+    serializer_class = StudentSerializer
+
