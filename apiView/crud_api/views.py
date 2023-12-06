@@ -10,13 +10,13 @@ from .serializers import StudentSerializer
 # API View
 class StudentView(APIView):
     def post(self, request, format=None):
-        print("Student1", request)
-        print("Student2", request.method)
-        print("Student3", request.data)
+        # print("Student1", request)
+        # print("Student2", request.method)
+        # print("Student3", request.data)
 
-        # serializer = StudentSerializer(data=request.data)
-        # serializer.is_valid(raise_exception=True)
-        # serializer.save()
+        serializer = StudentSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
 
         return Response(
             {"success": "Student uploaded successfully"}, status=status.HTTP_200_OK
@@ -145,3 +145,8 @@ class StudentDataGenericsView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Students.objects.all()
     serializer_class = StudentSerializer
 
+from rest_framework import viewsets
+class StudentViewsetView(viewsets.ModelViewSet):
+     # Your implementation for list, create, retrieve, update, destroy, etc.
+     queryset = Students.objects.all()
+     serializer_class = StudentSerializer
