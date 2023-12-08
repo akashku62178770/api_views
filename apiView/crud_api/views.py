@@ -145,8 +145,14 @@ class StudentDataGenericsView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Students.objects.all()
     serializer_class = StudentSerializer
 
+
+
 from rest_framework import viewsets
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated, IsAdminUser 
 class StudentViewsetView(viewsets.ModelViewSet):
      # Your implementation for list, create, retrieve, update, destroy, etc.
      queryset = Students.objects.all()
      serializer_class = StudentSerializer
+    #  authentication_classes = [BasicAuthentication]
+    #  permission_classes = [IsAuthenticatedOrReadOnly] 
